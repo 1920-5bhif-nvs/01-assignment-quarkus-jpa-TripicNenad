@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.transaction.Transactional;
@@ -22,4 +23,18 @@ public class VehicleEndpoint {
     public Response findAll(){
       return Response.ok(em.createNamedQuery("Vehicle.findAll",Vehicle.class).getResultList()).build();
     }
+
+    @Path("{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response findById(@PathParam("id") long id){
+        Vehicle v = em.find(Vehicle.class, id);
+        if (v != null){
+            return Response.ok(v).build();
+        }
+        else
+            return Response.noContent().build();
+    }
+
 }
