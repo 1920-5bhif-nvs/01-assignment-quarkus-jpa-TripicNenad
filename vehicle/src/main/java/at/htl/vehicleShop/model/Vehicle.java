@@ -21,8 +21,6 @@ public class Vehicle {
         this.modelName = modelName;
     }
     //endregion
-
-
     //region Getter and Setter
     public Long getId() {
         return Id;
@@ -44,4 +42,5 @@ public class Vehicle {
         this.modelName = modelName;
     }
     //endregion
+
 }

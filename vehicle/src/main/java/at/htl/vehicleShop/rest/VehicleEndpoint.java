@@ -4,13 +4,11 @@ import at.htl.vehicleShop.model.Vehicle;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("vehicle")
 public class VehicleEndpoint {
@@ -35,6 +33,21 @@ public class VehicleEndpoint {
         }
         else
             return Response.noContent().build();
+    }
+
+    @Path("{id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response deleteById(@PathParam("id") long id){
+        try{
+            Vehicle v = em.find(Vehicle.class, id);
+            em.remove(v);
+        }
+        catch (Exception e){
+            return Response.status(404).build();
+        }
+        return Response.ok().build();
     }
 
 }
