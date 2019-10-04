@@ -3,7 +3,7 @@ package at.htl.vehicleShop.model;
 import javax.persistence.*;
 
 @Entity
-//@NamedQuery(name = "Vehicle.findAll",query = "select v from Vehicle v")
+@NamedQuery(name = "Vehicle.findAll",query = "select v from Vehicle v")
 public class Vehicle {
 
     @Id

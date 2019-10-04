@@ -17,10 +17,9 @@ public class VehicleEndpoint {
     EntityManager em;
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response findAll(){
-      //  return Response.ok(em.createNamedQuery("Vehicle.findAll"), Vehicle.class).getResultList()).build();
-        return null;
+      return Response.ok(em.createNamedQuery("Vehicle.findAll",Vehicle.class).getResultList()).build();
     }
 }
