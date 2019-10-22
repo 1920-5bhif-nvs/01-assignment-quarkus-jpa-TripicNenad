@@ -1,6 +1,7 @@
 package at.htl.vehicleShop.business;
 
-import at.htl.vehicleShop.model.Vehicle;
+import at.htl.vehicleShop.model.Roadster;
+import at.htl.vehicleShop.model.Sedan;
 import io.quarkus.runtime.StartupEvent;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -16,12 +17,18 @@ public class InitBean {
     EntityManager em;
 
     @Transactional
-    void init(@Observes StartupEvent ev){
+    void init(@Observes StartupEvent ev) {
         System.err.println("------init------");
 
-        for(int i = 120; i < 830;i+=100 )
-        {
-            em.persist(new Vehicle("BMW",i+"D"));
+
+        System.err.println("------ROADSTERS------");
+        for (int i = 1; i <6 ; i++) {
+            em.persist(new Roadster("BMW","Z"+i,i*120,250,2000));
+        }
+
+        System.err.println("------SEDANS------");
+        for (int i = 120; i < 830; i += 100) {
+            em.persist(new Sedan("BMW", i + "D",5,i));
         }
 
     }
