@@ -8,7 +8,7 @@ public abstract class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long ID;
     private String manufacturer;
     private String modelName;
 
@@ -22,8 +22,8 @@ public abstract class Vehicle {
     }
     //endregion
     //region Getter and Setter
-    public Long getId() {
-        return Id;
+    public Long getID() {
+        return ID;
     }
 
     public String getManufacturer() {
